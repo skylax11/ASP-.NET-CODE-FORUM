@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Forum";
+}
+<h2>Forum</h2>
+
+@using letsDoThis.Models
+@model List<Post>
+@{
+    User currentUser = null;
+    if (Session["login"] != null)
+    {
+        currentUser = Session["login"] as User;
+    }
+
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    .btn2{
+        width:90px;
+        height:30px;
+    }
+</style>
+<div class="list-group">
+    @using (Html.BeginForm())
+    {
+        if (currentUser != null)
+        {
+            <a href="/Forum/PostEkle" class="btn btn-primary">Ekle</a>
+
+        }
+        else
+        {
+            <a href="/Forum/PostEkle" class="btn btn-primary disabled">Ekle</a>
+
+        }
+        foreach (var item in Model)
+        {
+            if (item != null)
+            {
+                <div class="list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100">
+                        <ul>
+                            <li style="float:left;max-width:350px">
+                                <h5 class="mb-1">@item.Title</h5>
+                                <small>Daha fazlası için @Html.ActionLink("tıkla", "GoToPost", new { id = item.PostID }).</small>
+                                <span>@item.LikeCount</span><button id="likeButton-@item.PostID" type="button" class="btn btn-default"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
+                                <script>
+                                    $("#likeButton-" +@item.PostID).click(function () {
+                                        $.ajax({
+                                            method: "POST",
+                                            url: "/Forum/Like",
+                                            data: { id:@item.PostID}
+                                        }).done(function () {
+                                            alert("Başarılı");
+                                        }).fail(function () {
+                                            alert("Hata");
+                                        })
+                                    })
+                                </script>
+                            </li>
+
+                            <li style="float:right">
+                                <small style="padding-left:300px">@(DateTime.Now.Day - item.CreatedDate.Day) days ago</small>
+                                <small style="padding-left:25px"><i class="fa-regular fa-user"></i>@item.owner.UserName</small>
+                                <small style="padding-left:25px">Son Düzenleme: @item.ModifiedDate</small>
+                                @if (currentUser != null)
+                                {
+                                    if (currentUser.UserID == item.owner.UserID || currentUser.isAdmin == true)
+                                    {
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.PostID }, new { @class = "btn btn-sm btn-primary btn2" })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.PostID }, new { @class = "btn btn-sm btn-danger btn2" })
+                                    }
+                                }
+                            </li>
+                        </ul>
+                        
+                        
+
+                    </div>
+                </div>
+            }
+
+        }
+    }
+
+</div>

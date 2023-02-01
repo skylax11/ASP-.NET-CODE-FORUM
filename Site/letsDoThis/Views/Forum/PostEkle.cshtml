@@ -1,0 +1,55 @@
+﻿
+@using letsDoThis.Models
+@model Post
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<style>
+    .formBU {
+        width: 500px;
+        position: absolute;
+        top: 20%;
+        left: 35%;
+    }
+</style>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal formBU">
+    <h4>Post Ekle</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PostID)
+
+    <div class="form-group col-md-10">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group col-md-10">
+        @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Desc, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    @if (Session["ADDPOSTerrors"] != null)
+    {
+    foreach (var x in Session["ADDPOSTerrors"] as List<string>
+        )
+        {
+
+        @(x);
+        }
+        Session["ADDPOSTerrors"] = null;
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </div>
+</div>
+    
+}

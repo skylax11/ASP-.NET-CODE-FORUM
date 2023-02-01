@@ -1,0 +1,21 @@
+﻿.post-content {
+    text-align: left;
+}
+
+.header {
+    text-align: left;
+}
+
+.post {
+    position: absolute;
+    top: 11%;
+    left: 7%;
+    width: 1200px;
+    height: 500px;
+}
+.post-comments {
+    position: absolute;
+    top: 100%;
+    width: 1200px;
+    height: 500px;
+}

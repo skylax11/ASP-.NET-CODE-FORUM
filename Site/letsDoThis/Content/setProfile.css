@@ -1,0 +1,14 @@
+﻿body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-size: auto;
+    background-image: url('../img/d810f4383399b5fbd0cb19a2c033d7d8.jpg');
+}
+.formC{
+    position:absolute;
+    top:15%;
+    left:40%;
+}
+.renkver{
+    color:white;
+}

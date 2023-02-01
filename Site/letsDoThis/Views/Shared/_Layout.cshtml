@@ -1,0 +1,55 @@
+﻿@using letsDoThis.Models
+@using letsDoThis.EF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="~/Content/s.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    @{ User CurrentUser;
+        if (Session["login"] != null)
+        {
+            CurrentUser = Session["login"] as User;
+        }
+        else
+        {
+            CurrentUser = null;
+        }
+        RepoCommand<Post> command = new RepoCommand<Post>();
+        Post findPost = command.List().OrderByDescending(x => x.LikeCount).FirstOrDefault();
+        Post findPost2 = command.List().OrderByDescending(x => x.CreatedDate).FirstOrDefault();
+
+    }
+    <div class="navbar">
+        <ul>
+            <li><a href="/Home/Index">Home Page</a></li>
+            <li><a href="/Forum/ForumList">Go To Forum</a></li>
+            <li><a href="/Home/WhatDoWeMean">Codes For Fun!</a></li>
+            @if (CurrentUser != null)
+            {
+                <li><a href="/Profile/ShowProfile">@CurrentUser.UserName</a></li>
+                <li><a href="/Home/Logout">Log Out</a></li>
+            }
+            else
+            {
+                <li><a href="/Home/Login">Log In</a></li>
+                <li><a href="/Home/Register">Register</a></li>
+            }
+
+        </ul>
+    </div>
+    @RenderBody()
+</body>
+</html>
+

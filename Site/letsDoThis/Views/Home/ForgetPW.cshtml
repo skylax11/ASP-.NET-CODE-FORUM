@@ -1,0 +1,38 @@
+﻿@using letsDoThis.Models
+@model User
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/bg-image.css" rel="stylesheet" />
+<link href="~/Content/login.css" rel="stylesheet" />
+
+<div class="wrapper fadeInDown">
+    @using (Html.BeginForm())
+    {
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <span class="glyphicon glyphicon-user Myicon"></span><span class="Myicon" style="font-size:25px;"><strong>KULLANICI GİRİŞİ</strong></span>
+            <!-- Login Form -->
+            <form>
+                @Html.TextBoxFor(x => x.UserName, new { @class = "fadeIn third", id = "login", placeholder = "Kullanıcı Adı" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                <br />
+                @Html.TextBoxFor(x => x.Password, new { @class = "fadeIn third", id = "password", placeholder = "Şifre" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                <Br />
+                <br />
+                @if (TempData["hata2"] != null)
+                {
+                    @TempData["hata2"]
+                    TempData["hata"] = null;
+                }
+                <br />
+                <input type="submit" class="fadeIn fourth" value="Log In">
+            </form>
+        </div>
+    }
+</div>
+
+
+

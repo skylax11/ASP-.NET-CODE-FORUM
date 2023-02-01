@@ -1,0 +1,92 @@
+﻿@using letsDoThis.Models
+@model User
+@{
+    ViewBag.Title = "Profil Düzenle";
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/setProfile.css" rel="stylesheet" />
+<div class="container">
+
+    <div class="row">
+        <h2 class="renkver">@ViewBag.Title</h2>
+    </div>
+
+    <div class="row">
+        @using (Html.BeginForm("SetProfile", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-horizontal">
+
+                <div class="col-md-3">
+                    <img src="~/Img/@Model.ProfileImage" class="img-circle" width="128" height="128" />
+                    @Html.HiddenFor(model => model.ProfileImage)
+                    <br /><br />
+                    <input type="file" name="ProfileImage" id="ProfileImage" class="form-control" /><br />
+                    <span class="glyphicon glyphicon-info-sign">&nbsp;</span>
+                    <span class="renkver"><i>Lütfen jpg, jpeg ya da png formatı kullanın.</i></span>
+                </div>
+
+                <div class="col-md-5 formC">
+
+                    @Html.ValidationSummary(false)
+                    @Html.HiddenFor(model => model.UserID)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3 renkver" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-3 renkver" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3 renkver" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3 renkver" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-3 renkver" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                            @Html.ActionLink("İptal", "Index", "Home", null, new { @class = "btn btn-danger" })
+                        </div>
+                        @if (Session["Editerror"] as List<string> != null)
+                        {
+                            foreach (var item in (Session["Editerror"] as List<string>))
+                            {
+                                <span class="text-danger">@(item)</span>
+                                Session["Editerror"] = null;
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    &nbsp;
+                </div>
+            </div>
+        }
+    </div>
+
+</div>

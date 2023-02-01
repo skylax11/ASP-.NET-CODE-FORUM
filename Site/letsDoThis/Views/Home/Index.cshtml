@@ -1,0 +1,102 @@
+﻿@using letsDoThis.Models
+@using letsDoThis.EF
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    User currentUser = new User();
+    if (Session["login"] != null)
+    {
+        currentUser = Session["login"] as User;
+    }
+    else
+    {
+        currentUser = null;
+    }
+    RepoCommand<Post> command = new RepoCommand<Post>();
+    Post findPost = command.List().OrderByDescending(x => x.LikeCount).FirstOrDefault();
+    Post findPost2 = command.List().OrderByDescending(x => x.CreatedDate).FirstOrDefault();
+
+}
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/s.css" rel="stylesheet" />
+    <link href="~/Content/bg-image.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <div class="main">
+        <div class="m-brand">
+            @if (currentUser != null)
+            {
+                <p class="text1">Hoşgeldiniz @currentUser.UserName! Günün tadını çıkarın..</p>
+            }
+            else
+            {
+                <p class="text1">Hoşgeldiniz! Giriş yapmak için <a style="text-decoration:none;color:mediumpurple" href="/Home/Login">tıklayınız</a></p>
+            }
+        </div>
+    </div>
+    <div class="card1">
+        <div class="iconF ">
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </div>
+        <p>Haftanın En Çok Beğenilen Postu</p>
+        <div class="card1-content">
+            @if (findPost != null)
+            {
+                <br />
+                @findPost.Title
+                <hr />
+                @findPost.Desc
+            }
+           
+        </div>
+    </div>
+    <div class="card2">
+        <div class="iconF">
+            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+        </div>
+        <p>En Son Atılan Post</p>
+        <div class="card2-content">
+            @if (findPost != null)
+            {
+                <br />
+                @findPost.Title
+                <hr />
+                @findPost.Desc
+            }
+        </div>
+    </div>
+    <div class="fake-footer">
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".m-brand").animate({
+                top: "40%",
+                left: "0%"
+
+            }, 1500).promise().done(function () {
+                $(".text1").animate({
+                    opacity: 1
+                }, 1500);
+            })
+        })
+    </script>
+</body>
+</html>
+

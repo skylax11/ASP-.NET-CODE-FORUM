@@ -1,0 +1,59 @@
+﻿@using letsDoThis.Models
+@model User
+
+@{
+    ViewBag.Title = "Profiliniz";
+}
+@{ User currentUser = new User();
+    if (Session["login"] != null)
+    {
+        currentUser = Session["login"] as User;
+    }
+    else
+    {
+        currentUser = null;
+    }
+
+
+   }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="~/Content/bg-image.css" rel="stylesheet" />
+<div class="container">
+
+
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <img style="width:150px;height:150px;color:white;" src="~/Img/@Model.ProfileImage" alt="Alternate Text" />
+        </div>
+
+        <div class="col-md-10">
+            <h3 style="color:white;">@(Model.Name + " " + Model.Surname)</h3>
+            <br />
+            <h5 style="color:white;"><b>@Html.DisplayNameFor(model => model.UserName) : </b>@Model.UserName</h5>
+            <h5 style="color:white;"><b>@Html.DisplayNameFor(model => model.email) : </b>@Model.email</h5>
+            <br />
+            <h5><a href="#">More... </a></h5>
+        </div>
+
+    </div>
+    @if (currentUser.isAdmin)
+    {
+        <a href="@Url.Action("ViewAll")" class="btn btn-primary">
+            <span class="glyphicon glyphicon-edit">&nbsp;</span>
+            Edit Users
+        </a>
+    }
+
+    <a href="@Url.Action("SetProfile")" class="btn btn-primary">
+        <span class="glyphicon glyphicon-edit">&nbsp;</span>
+        Modify
+    </a>
+    <a href="@Url.Action("DeleteProfile")" class="btn btn-danger" onclick="return confirm('Hesabı silmek istediğinizden emin misiniz?')">
+        <span class="glyphicon glyphicon-trash">&nbsp;</span>Delete
+    </a>
+
+</div>
+
+

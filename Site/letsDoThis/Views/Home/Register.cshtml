@@ -1,0 +1,61 @@
+﻿@using letsDoThis.RegisterModel
+@model  RegMod
+@{
+    ViewBag.Title = "Register";
+}
+@{          List<string> errorList = Session["Rerrors"] as List<string>;
+
+        }
+<link href="~/Content/login.css" rel="stylesheet" />
+<link href="~/Content/bg-image.css" rel="stylesheet" />
+<div class="wrapper fadeInDown">
+    @using (Html.BeginForm())
+    {
+
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <span class="glyphicon glyphicon-user Myicon"></span><span class="Myicon" style="font-size:25px;"><strong>     KAYIT FORMU</strong></span>
+            <!-- Login Form -->
+            <form>
+                @Html.TextBoxFor(x => x.UserName, new { @class = "fadeIn second", id = "login", placeholder = "Kullanıcı Adı" })
+                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                <br />
+
+                @Html.TextBoxFor(x => x.email, new { @class = "fadeIn second", placeholder = "E-posta" })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+
+                <br />
+
+                @Html.TextBoxFor(x => x.Password, new { @class = "fadeIn third", id = "password", placeholder = "Şifre" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                <br />
+
+                @Html.TextBoxFor(x => x.REPassword, new { @class = "fadeIn third", id = "password", placeholder = "Tekrar Şifre" })
+                @Html.ValidationMessageFor(model => model.REPassword, "", new { @class = "text-danger" })
+
+                <br />
+                @if (errorList != null)
+                {
+                    foreach (var item in errorList)
+                    {
+                        @(item)
+
+                    }
+                    Session["Rerrors"] = null;
+                }
+            <br />
+            <br />
+
+                <input type="submit" class="fadeIn fourth" value="Register">
+            </form>
+
+        </div>
+    }
+    </div>
+
+
+
+

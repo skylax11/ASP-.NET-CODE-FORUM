@@ -1,0 +1,44 @@
+﻿pre code {
+    display: block;
+    background: none;
+    white-space: pre;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    max-width: 500px;
+    max-height: 500px;
+    padding: 0;
+}
+/* For all <code> */
+code {
+    font-family: MyFancyCustomFont, monospace;
+    font-size: inherit;
+}
+
+/* Code in text */
+p > code,
+li > code,
+dd > code,
+td > code {
+    background: #ffeff0;
+    word-wrap: break-word;
+    box-decoration-break: clone;
+    padding: .1rem .3rem .2rem;
+    border-radius: .2rem;
+}
+
+.li1 {
+    width: 500px;
+    height: 500px;
+    background-color: aqua;
+}
+
+.li2 {
+    width: 500px;
+    height: 500px;
+    background-color: red;
+}
+
+.divv ul li {
+    position: relative;
+    display: inline;
+}

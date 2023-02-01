@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="cs.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="header">
+        <h2 style="position:absolute;left: 35%;">EREN REYHANLIOGLU HATIRATI..!!</h2>
+    </div>
+    <Br></Br>
+    <Br></Br>
+    <Br></Br>
+    <Br></Br>
+
+    <div class="divv">
+        <ul>
+            <li>
+                <img style="width: 500px;height: 200px;" src="~/Img/image.png" alt="">
+            </li>
+            <li>
+                <img style="width: 500px;height: 200px;" src="~/Img/image (1).png" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <pre><code>
+        #include <stdio.h>
+            #include <stdlib.h>
+            
+            int main()
+            {
+            
+                char dizi[3][3], hamle;
+                int  hamle_sirasi=0;
+            
+                int i = 0, j = 0, sanal_i = 0, sanal_j = 0, sayac=0;
+            
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        dizi[i][j] = NULL;
+                    }
+                }
+            
+                while (1)
+                {
+                    if(hamle_sirasi==0)
+                        printf("Hamle sirasi X'te\n\n");
+                    else if(hamle_sirasi==1)
+                        printf("Hamle sirasi O'da\n\n");
+            
+                    printf("Sirasiyla hamle yapmak istediginiz satir numarasini giriniz: ");
+                    scanf("%d", &i);
+            
+                    printf("Sirasiyla hamle yapmak istediginiz sutun numarasini giriniz: ");
+                    scanf("%d", &j);
+            
+                    if (i > 3 || j > 3 || i == 0 || j == 0)
+                    {
+                        printf("\nHatali bir dizi elemani girdiniz lutfen tekrar deneyiniz\n\n");
+                        continue;
+                    }
+                    if (dizi[i - 1][j - 1] != NULL)
+                    {
+                        printf("\nDizinin o elemaninde zaten hamle yapilmis lutfen baska bir eleman seciniz\n\n");
+                        continue;
+                    }
+                    if(hamle_sirasi==0)
+                    {
+                        hamle_sirasi=1;
+                        dizi[i - 1][j - 1] = 'X';
+                    }
+                    else if(hamle_sirasi==1)
+                    {
+                        hamle_sirasi=0;
+                        dizi[i - 1][j - 1] = 'O';
+                    }
+                    printf("\n");
+            
+                    sayac=0;
+            
+                    system("CLS");
+            
+                    for (sanal_i = 0; sanal_i <= 2; sanal_i++)
+                    {
+            
+                        for (sanal_j = 0; sanal_j <= 2; sanal_j++)
+                        {
+            
+                            if (dizi[sanal_i][sanal_j] == NULL)
+                            {
+                                printf("_ ");
+                            }
+                            else
+                            {
+                                printf("%c ", dizi[sanal_i][sanal_j]);
+                                sayac++;
+                            }
+                        }
+                        printf("\n");
+                    }
+            
+                    printf("\n");
+                    if (1)
+                    {
+                        if (dizi[0][0] == dizi[0][1] && dizi[0][1] == dizi[0][2] && dizi[0][0] != NULL && dizi[0][1] != NULL && dizi[0][2] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[0][0]);
+                        }
+                        else if (dizi[1][0] == dizi[1][1] && dizi[1][1] == dizi[1][2] && dizi[1][0] != NULL && dizi[1][1] != NULL && dizi[1][2] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[1][0]);
+                            exit(0);
+                        }
+                        else if (dizi[2][0] == dizi[2][1] && dizi[2][1] == dizi[2][2] && dizi[2][0] != NULL && dizi[2][1] != NULL && dizi[2][2] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[2][0]);
+                            exit(0);
+                        }
+                        else if (dizi[0][0] == dizi[1][0] && dizi[1][0] == dizi[2][0] && dizi[0][0] != NULL && dizi[1][0] != NULL && dizi[2][0] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[0][0]);
+                            exit(0);
+                        }
+                        else if (dizi[0][1] == dizi[1][1] && dizi[1][1] == dizi[2][1] && dizi[0][1] != NULL && dizi[1][1] != NULL && dizi[2][1] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[0][1]);
+                            exit(0);
+                        }
+                        else if (dizi[0][2] == dizi[1][2] && dizi[1][2] == dizi[2][2] && dizi[0][2] != NULL && dizi[1][2] != NULL && dizi[2][2] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[0][2]);
+                            exit(0);
+                        }
+                        else if (dizi[0][0] == dizi[1][1] && dizi[1][1] == dizi[2][2] && dizi[0][0] != NULL && dizi[1][1] != NULL && dizi[2][2] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[0][0]);
+                            exit(0);
+                        }
+                        else if (dizi[0][2] == dizi[1][1] && dizi[1][1] == dizi[2][0] && dizi[0][2] != NULL && dizi[1][1] != NULL && dizi[2][0] != NULL)
+                        {
+                            printf("Oyunu %c kazandi\n", dizi[0][2]);
+                            exit(0);
+                        }
+                        else if (sayac == 9)
+                        {
+                            printf("Oyun berabere bitti\n");
+                            exit(0);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+            
+                    printf("\n");
+                }
+              return 0;
+            }
+      </code></pre>
+    <H1>MAYIN TARLASI (KODLAR ASKIYA ALİNDİ)</H1>
+    <div class="divv">
+        <ul>
+            <li>
+                <img style="width: 500px;height: 200px;" src="~/Img/image (2).png" alt="">
+            </li>
+            <li>
+                <img style="width: 500px;height: 200px;" src="~/Img/image (3).png" alt="">
+            </li>
+        </ul>
+    </div>
+    <H1>ADAM ASMACA (KODLAR ASKIYA ALİNDİ)</H1>
+    <div class="divv">
+        <ul>
+            <li>
+                <img style="width: 500px;height: 200px;" src="~/Img/image (4).png" alt="">
+            </li>
+            <li>
+                <img style="width: 500px;height: 200px;" src="~/Img/image (5).png" alt="">
+            </li>
+        </ul>
+    </div>
+
+
+
+</body>
+</html>

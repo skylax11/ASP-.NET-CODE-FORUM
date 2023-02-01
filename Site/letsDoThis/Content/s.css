@@ -1,0 +1,202 @@
+﻿* {
+    list-style-type: none;
+    font-family: 'Open Sans', sans-serif;
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: rgb(10,10,35);
+    position: fixed;
+    width: 100%;
+    height: 7%;
+    left: 0;
+    top: 0;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    z-index:2;
+}
+
+    .navbar ul li {
+        font-size: 1.13rem;
+        margin-left: 10rem;
+        display: inline;
+    }
+
+        .navbar ul li a {
+            list-style-type: none;
+            text-decoration: none;
+            color: rgba(220,168,230,255);
+            transition: 0.2s all;
+        }
+
+            .navbar ul li a:hover {
+                border-bottom: 3px solid white;
+                border-radius: 3px;
+                list-style-type: none;
+                text-decoration: none;
+                color: white;
+            }
+
+.text1 {
+    padding: 1.4rem;
+    opacity: 0;
+}
+.text2 {
+    padding: 1.4rem;
+    opacity: 0;
+}
+#p1 {
+    padding: 1.4rem;
+    opacity: 0;
+}
+#p2 {
+    padding: 1.4rem;
+    opacity: 0;
+}
+
+.m-brand {
+    background-color: rgb(22,20,57,0.5);
+    position: absolute;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+}
+.div2 {
+    background-color: rgb(22,20,57,0.5);
+    position: absolute;
+    text-align: center;
+    color: white;
+    width: 100%;
+    height: 100px;
+    top: 0;
+    left: 0;
+}
+@media screen and (min-width:60px) {
+    .navbar ul li {
+        font-size: 0.8rem;
+        margin-left: 0.75rem;
+        display: inline;
+    }
+}
+
+@media screen and (min-width:400px) {
+    .navbar ul li {
+        font-size: 0.77rem;
+        margin-left: 2.1rem;
+        display: inline;
+    }
+}
+
+@media screen and (min-width:810px) {
+    .navbar ul li {
+        font-size: 1rem;
+        margin-left: 3.3rem;
+        display: inline;
+    }
+}
+
+@media screen and (min-width:1001px) {
+    .navbar ul li {
+        font-size: 1.13rem;
+        margin-left: 4.3rem;
+        display: inline;
+    }
+}
+
+@media screen and (min-width:1301px) {
+    .navbar ul li {
+        font-size: 1.13rem;
+        margin-left: 9rem;
+        display: inline;
+    }
+}
+
+@media screen and (min-width:1500px) {
+    .navbar ul li {
+        font-size: 1.13rem;
+        margin-left: 11rem;
+        display: inline;
+    }
+}
+.card1 {
+    position: absolute;
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+    width: 350px;
+    height: 500px;
+    background-color: rgb(22,20,57,0.5);
+    top: 60%;
+    left: 10%;
+}
+
+.card1-content {
+    text-align: center;
+    background-color: rgb(22,20,57,0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.card2 {
+    text-align: center;
+    color: white;
+    font-size: 1rem;
+    position: absolute;
+    width: 350px;
+    height: 500px;
+    background-color: rgb(22,20,57,0.5);
+    top: 60%;
+    left: 70%;
+}
+
+.card2-content {
+    text-align: center;
+    background-color: rgb(22,20,57,0.5);
+    width: 100%;
+    height: 100%;
+}
+
+.fake-footer {
+    background-color: red;
+    opacity: 0;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 100%;
+}
+
+.card1 i{
+    opacity: 0;
+}
+.card1:hover i {
+    opacity: 1;
+    color: white;
+    font-size: 8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+card1:hover{
+    opacity:0.3;
+}
+card2:hover {
+    opacity: 0.3;
+}
+.card2 i{
+   opacity:0;
+}
+
+.card2:hover i {
+    opacity: 1;
+    color: white;
+    font-size: 8rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

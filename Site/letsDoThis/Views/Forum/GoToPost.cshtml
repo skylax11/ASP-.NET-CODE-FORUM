@@ -1,0 +1,124 @@
+﻿@using letsDoThis.Models
+@model Post
+@{
+    ViewBag.Title = "GoToPost";
+
+
+}
+@{
+    User user = new User();
+    user = null;
+    if (Session["login"] != null)
+    {
+         user = Session["login"] as User;
+    }
+    else
+    {
+        user = null;
+    }
+
+
+ }
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<link href="~/Content/forPost.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+<div class="post">
+    <div class="header">
+        <p>
+            <h2>@(Model.Title)</h2>
+        </p>
+        <div class="col-md-2">
+            <img style="width:50px;height:50px;color:white;" src="~/Img/@Model.owner.ProfileImage" alt="Alternate Text" />@Model.owner.UserName
+        </div>
+    </div>
+    <hr>
+    <br>
+    <div class="post-content">
+        @Model.Desc
+    </div>
+
+    <hr />
+    <div class="post-comments">
+        <h2>Comments</h2>
+        <hr />
+        @foreach (var item in Model.comment)
+        {
+            <div class="col-md-2">
+                <img style="width:50px;height:50px;color:white;" src="~/Img/@item.Owner.ProfileImage" alt="Alternate Text" />@item.Owner.UserName
+            </div>
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                @item.CommentText
+            </div>
+            <br />
+            <br />
+            <div class="col-md-2">
+                @item.CreatedDate
+                @if (user != null)
+                {
+                    if (user.UserID == item.Owner.UserID)
+                    {
+                        <button class="btn btn-sm btn-danger" value="@item.CommentID" id="sil-@item.CommentID" type="button">Sil</button>
+                        <script>
+        $("#sil-"+@item.CommentID).click(function () {
+            var value = $("#sil-"+@item.CommentID).val();
+            console.log(value);
+            $.ajax({
+                method: "POST",
+                url: "/Forum/YorumSil",
+                data: { id: @item.CommentID }
+            }).done(function () {
+                window.location.href = "https://localhost:44378/Forum/GoToPost/" +@Model.PostID;
+            })
+        });
+                        </script>
+                    }
+                }
+
+            </div>
+            <hr />
+
+        }
+
+        <div class="form-group col-md-10">
+            <div class="col-md-10">
+                <textarea id="textare" class="form-control" rows="10" cols="100"></textarea>
+            </div>
+        </div>
+        @if (user == null)
+        {
+            <button class="btn btn-sm btn-primary disabled" id="gonder" type="button">Yorum Ekle</button>
+
+        }
+        else
+        {
+            <button class="btn btn-sm btn-primary" id="gonder" type="button">Yorum Ekle</button>
+
+        }
+        <br />
+        <Br />
+        <Br />
+    </div>
+</div>
+<script>
+    $(function () {
+
+        $("#gonder").click(function () {
+            var Text = $("#textare").val();
+            $.ajax({
+                method: "POST",
+                url: "/Forum/YorumEkle",
+                data: { GelenText: Text }
+            }).done(function () {
+                window.location.href = "https://localhost:44378/Forum/GoToPost/" +@Model.PostID;
+            })
+        })
+       
+    })
+   
+</script>
+

@@ -1,0 +1,85 @@
+﻿
+<link href="~/Content/codesforfun.css" rel="stylesheet" />
+
+<ul class="slideshow">
+    <li><span>Image 01</span></li>
+    <li><span>Image 02</span></li>
+    <li><span>Image 03</span></li>
+    <li><span>Image 04</span></li>
+    <li><span>Image 05</span></li>
+    <li><span>Image 06</span></li>
+    <li><span>Image 01</span></li>
+    <li><span>Image 02</span></li>
+    <li><span>Image 03</span></li>
+    <li><span>Image 04</span></li>
+    <li><span>Image 05</span></li>
+    <li><span>Image 06</span></li>
+</ul>
+<div class="m-brand" id="div1">
+    
+        <p id="p1"><span class="type" style="--n:53">
+    Hi! Im sure about that you are wondering about who made this page and for what? Let me introduce myself.I'm a student in Kocaeli University and my major is Computer Science.
+    I've made this page for people who actually want to consult about Coding.
+</span>
+</p>
+        
+    
+</div>
+<div id="div2" class="m-brand">
+    
+</div>
+<div id="div3" class="m-brand">
+    Are you still <a href="/Home/EGG">here?</a>
+</div>
+
+<script>
+    $(function () {
+        $("#div3").hide();
+        $("#p2").hide();
+        $(".navbar").hide();
+
+            $("#div1").animate({
+                top: "40%",
+                left: "0%"
+
+            }, 1500).promise().done(function () {
+                $("#p1").animate({
+                    opacity: 1
+                }, 500).promise().done(function () {
+                    setTimeout(function () {
+                        $("#div1").hide();
+                        $("#div2").show();
+                        var paragraph = document.createElement("p");
+                        var spanning = document.createElement("span");
+                        spanning.classList.add("type");
+                        spanning.style = "--n:53";
+                        spanning.innerHTML = "And that's all about me. Now you can watch the universe.";
+                        paragraph.appendChild(spanning);
+                        document.getElementById("div2").appendChild(paragraph);
+                        $("span").draggable().droppable();
+                    }, 17000)
+                    setTimeout(function () {
+                        $("#div2").hide();
+                    }, 30000)
+                    setTimeout(function () {
+                        $("#div3").show();
+
+                    }, 52000)
+                    setTimeout(function () {
+                        $("#div3").hide();
+
+                    }, 54000)
+                })
+            })
+       
+
+        $("#div2").animate({
+            top: "40%",
+            left:"0%"
+        }, 1500).promise().done(function () {
+            $("#p2").animate({
+                opacity: 1
+            }, 1500);
+        })
+        })
+</script>
