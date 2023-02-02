@@ -62,7 +62,7 @@
                             </li>
 
                             <li style="float:right">
-                                <small style="padding-left:300px">@(DateTime.Now.Day - item.CreatedDate.Day) days ago</small>
+                                <small style="padding-left:300px">@(DateTime.Now.Day - item.CreatedDate?.Day) days ago</small>
                                 <small style="padding-left:25px"><i class="fa-regular fa-user"></i>@item.owner.UserName</small>
                                 <small style="padding-left:25px">Son Düzenleme: @item.ModifiedDate</small>
                                 @if (currentUser != null)

@@ -25,16 +25,24 @@ namespace letsDoThis.Controllers
         [HttpPost]
         public ActionResult SetProfile(User user, HttpPostedFileBase ProfileImage)
         {
+            User currentUser = Session["login"] as User;
             string picture;
 
-            if (ProfileImage == null)
+            if (user.ProfileImage == null)
             {
-                picture = user.ProfileImage;
+                picture = null;
             }
             else
             {
-                picture = ProfileImage.FileName;
+                if (ProfileImage != null)
+                {
+                    picture = ProfileImage.FileName;
 
+                }
+                else
+                {
+                    picture = currentUser.ProfileImage;
+                }
             }
             if (ProfileImage != null &&
             (ProfileImage.ContentType == "image/jpg" ||
@@ -57,11 +65,11 @@ namespace letsDoThis.Controllers
             int? x = Session["deger"] as int?;
             if (x > 0)
             {
-                Session["login"] = user;
                 return View(updatedUser);
             }
             else
             {
+                Session["login"] = user;
                 return View(user);
             }
         }

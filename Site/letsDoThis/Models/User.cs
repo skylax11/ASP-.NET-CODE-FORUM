@@ -24,8 +24,8 @@ namespace letsDoThis.Models
         public string ProfileImage { get; set; }
         public bool isAdmin { get; set; }
         public bool isActivate{ get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public virtual List<Post> post { get; set; }
         public virtual List<Comments> comment { get; set; }
         public virtual List<Like> like { get; set; }

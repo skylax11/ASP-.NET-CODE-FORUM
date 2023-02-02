@@ -145,6 +145,7 @@
     <Content Include="Img\lIChKPl.jpeg" />
     <Content Include="Img\oQRMxwC.jpeg" />
     <Content Include="Img\SX6Z8IX.jpeg" />
+    <Content Include="Img\wallpaperflare.com_wallpaper.jpg" />
     <Content Include="Img\XNx9M69.jpeg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -243,6 +244,10 @@
     <Compile Include="Migrations\202301312206352_cmon.designer.cs">
       <DependentUpon>202301312206352_cmon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202302021223490_nullablePresent.cs" />
+    <Compile Include="Migrations\202302021223490_nullablePresent.designer.cs">
+      <DependentUpon>202302021223490_nullablePresent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="EF\MyDB.cs" />
@@ -317,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301312206352_cmon.resx">
       <DependentUpon>202301312206352_cmon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202302021223490_nullablePresent.resx">
+      <DependentUpon>202302021223490_nullablePresent.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

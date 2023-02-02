@@ -43,6 +43,8 @@ namespace letsDoThis.Management
                 }
                 else
                 {
+                    Errors.Add("Giriş bilgileriniz sistemdekiyle uyuşmuyor");
+                    HttpContext.Current.Session["errors"] = Errors;
                     return null;
                 }
             }
@@ -146,7 +148,7 @@ namespace letsDoThis.Management
                         girdiMi = true;
                     }
                 }
-                else if (findUserIfExistEMAIL != null)
+                if (findUserIfExistEMAIL != null)
                 {
                     if (findUserIfExistEMAIL.UserID != newUser.UserID)
                     {
@@ -233,7 +235,7 @@ namespace letsDoThis.Management
                         girdiMi = true;
                     }
                 }
-                else if (findUserIfExistEMAIL != null)
+                if (findUserIfExistEMAIL != null)
                 {
                     if (findUserIfExistEMAIL.UserID != CurrentUser.UserID)
                     {
@@ -247,13 +249,16 @@ namespace letsDoThis.Management
             if (girdiMi == false)
             {
                 User updateUser = command.Find(xz => xz.UserID == user.UserID);
-
+                
+                updateUser.ModifiedDate = DateTime.Now;
+                updateUser.CreatedDate = CurrentUser.CreatedDate;
                 updateUser.UserName = user.UserName;
                 updateUser.Name = user.Name;
                 updateUser.Password = user.Password;
                 updateUser.email = user.email;
                 updateUser.Surname = user.Surname;
                 updateUser.ProfileImage = pic;
+                
 
                 int x = command.Save();
                 HttpContext.Current.Session["login"] = updateUser;

@@ -13,8 +13,8 @@ namespace letsDoThis.Models
         [Key]
         public int CommentID { get; set; }
         public string CommentText { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
         public virtual User Owner { get; set; }
         public virtual Post thePost { get; set; }
     }
